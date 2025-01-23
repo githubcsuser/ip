@@ -7,20 +7,20 @@ public class Task {
         this.isDone = false;
     }
 
-    public String getStatusIcon() {
+    public String getStatusIcon() {   //Marks a checkbox
         return (isDone ? "X" : " ");
     }
 
-    public void markAsDone() {
+    public void markAsDone() {  //marks isDone as true
         isDone = true;
     }
 
-    public void markAsNotDone() {
+    public void markAsNotDone() { //marks isDone as false
         isDone = false;
     }
 
     @Override
-    public String toString() {
+    public String toString() {  //default task string
         return "[" + getStatusIcon() + "] " + description;
     }
 }
