@@ -34,75 +34,113 @@ public class Taskmax {
                     System.out.println(num + "." + tasks[i].toString());
                 }
                 System.out.println("\n" + line);
-            } else if (input.startsWith("mark ")) {   //mark input as done
+            } else if (input.startsWith("mark ")) {
+                try {//mark input as done
                 int num = Integer.parseInt(input.substring(5)) - 1;
-                    if(num >= 0 && num < count) {
+                    if(num < 0 || num >= count) {
+                        throw new TaskmaxException("Please enter a number of an existing task so I can find it in the list!");
+                    }
                         tasks[num].markAsDone();
                         System.out.println("Nice! I've marked your task as done.\n"
                                             + "Keep up the good work!\n"
                                             + line);
-                    }
+                    } catch (TaskmaxException e) {
+                    System.out.println(e.getMessage());
+                }
             } else if (input.startsWith("unmark ")) {   //mark input as undone
-                int num = Integer.parseInt(input.substring(7)) - 1;
-                if(num >= 0 && num < count) {
-                    tasks[num].markAsNotDone();
+                try {
+                    int num = Integer.parseInt(input.substring(7)) - 1;
+                if(num < 0 || num >= count) {
+                    throw new TaskmaxException("Please enter a number of an existing task so I can find it in the list!");
+                }
+                tasks[num].markAsNotDone();
                     System.out.println("I've unmarked your task.\n"
                             + "Don't give up on it yet!\n"
                             + line);
-                    }
-                } else if (input.startsWith("todo")) {  //To do tasks
+                    } catch (TaskmaxException e) {
+                System.out.println(e.getMessage());
+            }
+                } else if (input.startsWith("todo ")) {  //To do tasks
                     if(count >= limit) {
                         System.out.println(tooMany);
                         break;
                     }
+                    try {
                         String description = input.substring(5);
+                        if (description.equals("")) {
+                            throw new TaskmaxException("You have to include a task to add!\n"
+                                    + "e.g todo Assignmnet1");
+                        }
                         tasks[count] = new ToDo(description);
                         count++;
                         System.out.println(line + "\nGot it. I've added this task:\n  "
-                                           + tasks[count - 1].toString()
-                                           + "\nNow you have " + count + " tasks in the list.\n"
-                                           + line);
-            } else if (input.startsWith("deadline")) {  //Deadline tasks
-                if(count >= limit) {
-                    System.out.println(tooMany);
-                    break;
-                }
-                    String[] sections = input.substring(9).split("/by");
-                    if (sections.length != 2) {
-                        System.out.println("Oops! You have to include a \"/by deadline\" after your task\n"
-                                           + " e.g. deadline Assignment2 /by Sunday\n"
-                                           + "Please reboot me and try again!");
+                                + tasks[count - 1].toString()
+                                + "\nNow you have " + count + " tasks in the list.\n"
+                                + line);
+                    } catch (TaskmaxException e) {
+                        System.out.println(e.getMessage());
                     }
-                    tasks[count] = new Deadline(sections[0], sections[1]);
-                    count++;
-                    System.out.println(line + "\nGot it. I've added this task:\n  "
-                            + tasks[count - 1].toString()
-                            + "\nNow you have " + count + " tasks in the list.\n"
-                            + line);
-            } else if (input.startsWith("event")) {     //Event tasks
-                if(count >= limit) {
+            } else if (input.startsWith("deadline")) {  //Deadline tasks
+                if (count >= limit) {
                     System.out.println(tooMany);
                     break;
                 }
-                String[] sections = input.substring(6).split("/from | /to");
-                if (sections.length != 3) {
-                    System.out.println("Oops! You have to include a \"/from start /to end\" after your task\n"
-                            + " e.g. event Concert /from Monday 3am /to Monday 4pm\n"
+                try {
+                    String[] sections = input.substring(9).split("/by");
+                if (sections.length != 2) {
+                    throw new TaskmaxException("Oops! You have to include a \"/by deadline\" after your task\n"
+                            + "e.g. deadline Assignment2 /by Sunday\n"
                             + "Please reboot me and try again!");
                 }
-                tasks[count] = new Event(sections[0], sections[1], sections[2]);
+                tasks[count] = new Deadline(sections[0], sections[1]);
                 count++;
                 System.out.println(line + "\nGot it. I've added this task:\n  "
                         + tasks[count - 1].toString()
                         + "\nNow you have " + count + " tasks in the list.\n"
                         + line);
+            } catch (TaskmaxException e){
+                System.out.println(e.getMessage());
+            }
+            } else if (input.startsWith("event")) {     //Event tasks
+                if(count >= limit) {
+                    System.out.println(tooMany);
+                    break;
+                }
+                try {
+                    String[] sections = input.substring(6).split("/from | /to");
+                    if (sections.length != 3) {
+                        throw new TaskmaxException("Oops! You have to include a \"/from start /to end\" after your task\n"
+                                + "e.g. event Concert /from Monday 3am /to Monday 4pm\n"
+                                + "Please reboot me and try again!");
+                    }
+                    tasks[count] = new Event(sections[0], sections[1], sections[2]);
+                    count++;
+                    System.out.println(line + "\nGot it. I've added this task:\n  "
+                            + tasks[count - 1].toString()
+                            + "\nNow you have " + count + " tasks in the list.\n"
+                            + line);
+                } catch (TaskmaxException e) {
+                    System.out.println(e.getMessage());
+                }
             } else if (count >= limit) {
                 System.out.println(tooMany);
                 break;
             } else {
                 tasks[count] = new Task(input);
                 count++;
-                System.out.println(line + "\n added: " + input + "\n" + line);
+                System.out.println(line + "\n added: " + input + "\n"
+                        + "Hey there! There are 7 things I can help you with! \n"
+                        + "\n1. List: Type \"list\" and I will list out all the tasks you have given me!\n"
+                        + "2. ToDo: Type \"todo theTaskName\" to add a task you plan to do!\n"
+                        + "3. Deadlines: Type \"deadline theTaskName /by date\" to add a task with a specific deadline!\n"
+                        + "4. Events: Type \"event theTaskName /from start period /to end period\" to add an event!\n"
+                        + "5. Remove: Type \"remove theTaskName\" to remove the task from the list!\n"
+                        + "6. Mark as done: Type \"mark TaskListNumber\" to mark the task as complete in the list!\n"
+                        + "7. Mark as undone: Type \"unmark TaskListNumber\" to mark the task as incomplete in the list!\n"
+                        + "Any other text will be treated as a custom item for me to add to the list!\n"
+                        + "\nRemember that my input receptors are sensitive so please be careful with your spelling and capital letters!\n"
+                        + "That is all and happy scheduling! ~Taskmax :D\n"
+                        + line);
             }
         }
         scan.close();
