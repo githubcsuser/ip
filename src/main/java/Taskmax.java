@@ -39,14 +39,16 @@ public class Taskmax {
                     if(num >= 0 && num < count) {
                         tasks[num].markAsDone();
                         System.out.println("Nice! I've marked your task as done.\n"
-                                            + "Keep up the good work!\n");
+                                            + "Keep up the good work!\n"
+                                            + line);
                     }
             } else if (input.startsWith("unmark ")) {   //mark input as undone
                 int num = Integer.parseInt(input.substring(7)) - 1;
                 if(num >= 0 && num < count) {
                     tasks[num].markAsNotDone();
                     System.out.println("I've unmarked your task.\n"
-                            + "Don't give up on it yet!");
+                            + "Don't give up on it yet!\n"
+                            + line);
                     }
                 } else if (input.startsWith("todo")) {  //To do tasks
                     if(count >= limit) {
@@ -59,7 +61,7 @@ public class Taskmax {
                         System.out.println(line + "\nGot it. I've added this task:\n  "
                                            + tasks[count - 1].toString()
                                            + "\nNow you have " + count + " tasks in the list.\n"
-                                           + line + "\n");
+                                           + line);
             } else if (input.startsWith("deadline")) {  //Deadline tasks
                 if(count >= limit) {
                     System.out.println(tooMany);
@@ -76,7 +78,7 @@ public class Taskmax {
                     System.out.println(line + "\nGot it. I've added this task:\n  "
                             + tasks[count - 1].toString()
                             + "\nNow you have " + count + " tasks in the list.\n"
-                            + line + "\n");
+                            + line);
             } else if (input.startsWith("event")) {     //Event tasks
                 if(count >= limit) {
                     System.out.println(tooMany);
@@ -93,7 +95,7 @@ public class Taskmax {
                 System.out.println(line + "\nGot it. I've added this task:\n  "
                         + tasks[count - 1].toString()
                         + "\nNow you have " + count + " tasks in the list.\n"
-                        + line + "\n");
+                        + line);
             } else if (count >= limit) {
                 System.out.println(tooMany);
                 break;
