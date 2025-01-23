@@ -66,15 +66,25 @@ public class Baymax {
                      + "What can I refactor for you today?\n";
         System.out.println(line + intro + line + mascot + line);
 
+        String[] tasks = new String[100];
+        int count = 0;
+
         Scanner scan = new Scanner(System.in);
         String input;
 
         while (true) {
             input = scan.nextLine();
             if (input.equals("bye")) {
-                System.out.println(line + "\nBye. Hope to see you again soon!\n" + line);
+                System.out.println(line + "\nI hope that you are satisfied with your service.\n"
+                        + "See you again soon!\n" + line);
                 break;
-            } else {
+            } else if (input.equals("list")) {
+                for (int i = 0; i < count; i++) {
+                    System.out.println(i + 1 + ". " + tasks[i]);
+                }
+            }else if (count <= 100) {
+                tasks[count] = input;
+                count++;
                 System.out.println(line + "\n added: " + input + "\n" + line);
             }
         }
