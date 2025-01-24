@@ -152,7 +152,7 @@ public class Taskmax {
                 System.out.println(tooMany);
                 break;
             } else {
-                tasks.add(new Task(input));
+                tasks.add(new Task(input, TaskType.TODO));
                 System.out.println(line + "\n added: " + input + "\n" + line);
             }
         }
