@@ -1,15 +1,20 @@
-class Event extends Task{
-    protected String start;
-    protected String end;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-    public Event(String description, String start, String end) {
+class Event extends Task {
+    protected LocalDateTime start;
+    protected LocalDateTime end;
+
+    public Event(String description, String startString, String endString) {
         super(description, TaskType.EVENT);
-        this.start = start;
-        this.end = end;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        this.start = LocalDateTime.parse(startString, formatter);
+        this.end = LocalDateTime.parse(endString, formatter);
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(from: " + start + " to:" + end + ")";
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM dd yyyy, hh:mm a");
+        return "[E]" + super.toString() + "(from: " + start.format(outputFormatter) + " to: " + end.format(outputFormatter) + ")";
     }
 }
