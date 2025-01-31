@@ -6,6 +6,7 @@ import taskmax.command.ExitCommand;
 import taskmax.command.ListCommand;
 import taskmax.command.MarkCommand;
 import taskmax.command.UnmarkCommand;
+import taskmax.command.FindCommand;
 import taskmax.command.Command;
 
 import taskmax.exception.TaskmaxException;
@@ -57,6 +58,9 @@ public class Parser {
                         + "e.g. event Concert /from 2021-10-15 1800 /to 2021-10-15 2200\n"
                         + "Please try again!");
                 return new AddCommand(new Event(eventParts[0].trim(), eventParts[1].trim(), eventParts[2].trim()));
+            case "find":
+                validateCommand(words, "Please provide a keyword to search for.");
+                return new FindCommand(words[1].trim());
             default:
                 throw new TaskmaxException(getHelpMessage());
         }
@@ -75,7 +79,7 @@ public class Parser {
     }
 
     private static String getHelpMessage() {
-        return Ui.LINE + "Hey there! There are 7 things I can help you with! \n"
+        return Ui.LINE + "Hey there! There are 8 things I can help you with! \n"
                 + "\n1. List: Enter \"list\" and I will list out all the tasks you have given me!\n"
                 + "2. Todo: Enter \"todo theTaskName\" to add a task you plan to do!\n"
                 + "3. Deadlines: Enter \"deadline theTaskName /by yyyy-mm-dd 24hrTime\" to add a task with a specific deadline!\n"
@@ -83,6 +87,7 @@ public class Parser {
                 + "5. Delete: Enter \"delete theTaskName\" to delete a task from the list!\n"
                 + "6. Mark as done: Enter \"mark TaskListNumber\" to mark the task as complete in the list!\n"
                 + "7. Mark as undone: Enter \"unmark TaskListNumber\" to mark the task as incomplete in the list!\n"
+                + "8. Find: Enter \"find Word(s)YouWantToFind\" to find tasks that match the keyword in the description.\n"
                 + "\nIf you need a refresher, just enter any word!"
                 + "\nIf you are satisfied with your service, enter \"bye\" to save your task list and exit!\n"
                 + "\nDo remember that my input receptors are sensitive so please be careful with your spelling"
