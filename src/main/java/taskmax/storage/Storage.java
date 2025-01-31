@@ -16,14 +16,27 @@ import java.util.ArrayList;
 
 import java.time.format.DateTimeFormatter;
 
-
+/**
+ * Handles the storage of tasks in a file.
+ */
 public class Storage {
     private final String filePath;
 
+    /**
+     * Constructs a Storage instance with the specified file path.
+     *
+     * @param filePath The file path where tasks are stored.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Saves the given list of tasks to a file.
+     *
+     * @param tasks The list of tasks to be saved.
+     * @throws IOException If an error occurs while writing to the file.
+     */
     public void saveTasks(List<Task> tasks) throws IOException {
         File file = new File(filePath);
         file.getParentFile().mkdirs();
@@ -35,6 +48,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads tasks from the file and returns them as a list.
+     *
+     * @return A list of tasks loaded from the file.
+     * @throws IOException If an error occurs while reading the file.
+     */
     public List<Task> loadTasks() throws IOException {
         File file = new File(filePath);
         List<Task> tasks = new ArrayList<>();
@@ -55,6 +74,12 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Serializes a task into a string format for storage.
+     *
+     * @param task The task to be serialized.
+     * @return A string representation of the task.
+     */
     private String serializeTask(Task task) {
         String typeCode = "";
         String extraData = "";
@@ -73,6 +98,12 @@ public class Storage {
         return typeCode + " | " + (task.isDone() ? "1" : "0") + " | " + task.getDescription() + extraData;
     }
 
+    /**
+     * Deserializes a task from a string format.
+     *
+     * @param line The string representation of the task.
+     * @return The deserialized task, or {@code null} if parsing fails.
+     */
     private Task deserializeTask(String line) {
         try {
             String[] parts = line.split(" \\| ");
@@ -108,5 +139,3 @@ public class Storage {
         }
     }
 }
-
-

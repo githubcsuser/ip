@@ -2,23 +2,27 @@ package taskmax.main;
 
 import taskmax.storage.Storage;
 import taskmax.storage.TaskList;
-
 import taskmax.ui.Ui;
-
 import taskmax.parser.Parser;
-
 import taskmax.command.Command;
-
 import taskmax.exception.TaskmaxException;
 
 import java.io.IOException;
 
-
+/**
+ * The main entry point for the Taskmax application.
+ * This class initializes the necessary components and starts the user interaction loop.
+ */
 public class Taskmax {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructs a Taskmax instance with the given file path for task storage.
+     *
+     * @param filePath The file path where tasks are stored.
+     */
     public Taskmax(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -31,6 +35,10 @@ public class Taskmax {
         }
     }
 
+    /**
+     * Starts the Taskmax application, handling user commands in a loop
+     * until the exit command is received.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -46,10 +54,12 @@ public class Taskmax {
         ui.close();
     }
 
+    /**
+     * The main method that launches the Taskmax application.
+     *
+     * @param args Command-line arguments (not used).
+     */
     public static void main(String[] args) {
         new Taskmax("data/tasks.txt").run();
     }
 }
-
-
-
