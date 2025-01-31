@@ -16,7 +16,18 @@ import taskmax.task.ToDo;
 
 import taskmax.ui.Ui;
 
+/**
+ * Parses user input and returns the corresponding command.
+ */
 public class Parser {
+
+    /**
+     * Parses the user input and returns a corresponding {@code Command} object.
+     *
+     * @param input The user input string.
+     * @return The corresponding {@code Command} object.
+     * @throws TaskmaxException If the input is invalid.
+     */
     public static Command parse(String input) throws TaskmaxException {
         String[] words = input.split(" ", 2); // Ensure command and arguments are split properly
         String commandWord = words[0];
@@ -62,18 +73,38 @@ public class Parser {
         }
     }
 
+    /**
+     * Validates if the command contains the required arguments.
+     *
+     * @param words The split input words.
+     * @param errorMessage The error message to display if validation fails.
+     * @throws TaskmaxException If the command is missing required arguments.
+     */
     private static void validateCommand(String[] words, String errorMessage) throws TaskmaxException {
         if (words.length < 2) {
             throw new TaskmaxException(errorMessage);
         }
     }
 
+    /**
+     * Validates if the parts of a parsed command meet the expected length.
+     *
+     * @param parts The split input parts.
+     * @param expectedLength The expected number of parts.
+     * @param errorMessage The error message to display if validation fails.
+     * @throws TaskmaxException If the parsed parts are insufficient.
+     */
     private static void validateParts(String[] parts, int expectedLength, String errorMessage) throws TaskmaxException {
         if (parts.length < expectedLength) {
             throw new TaskmaxException(errorMessage);
         }
     }
 
+    /**
+     * Returns a help message detailing the available commands.
+     *
+     * @return A help message listing available commands.
+     */
     private static String getHelpMessage() {
         return Ui.LINE + "Hey there! There are 7 things I can help you with! \n"
                 + "\n1. List: Enter \"list\" and I will list out all the tasks you have given me!\n"

@@ -1,7 +1,15 @@
 package taskmax.ui;
 
+/**
+ * Represents the ASCII art mascot of the Taskmax application.
+ */
 public class Mascot {
 
+    /**
+     * Returns the ASCII representation of the Taskmax mascot.
+     *
+     * @return A string containing the ASCII art of the mascot.
+     */
     @Override
     public String toString() {
         return "                                                                                          \n" +
