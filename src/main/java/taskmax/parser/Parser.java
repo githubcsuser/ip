@@ -110,7 +110,7 @@ public class Parser {
      * @return The help message string.
      */
     private static String getHelpMessage() {
-        return Ui.LINE + "Hey there! There are 8 things I can help you with! \n"
+        return Ui.LINE + "\nHey there! There are 8 things I can help you with! \n"
                 + "\n1. List: Enter \"list\" and I will list out all the tasks you have given me!\n"
                 + "2. Todo: Enter \"todo theTaskName\" to add a task you plan to do!\n"
                 + "3. Deadlines: Enter \"deadline theTaskName /by yyyy-mm-dd 24hrTime\" to add a task with a specific deadline!\n"

@@ -31,7 +31,22 @@ public class FindCommand extends Command {
      */
     @Override
     public boolean execute(TaskList tasks, Ui ui, Storage storage) throws TaskmaxException {
-        StringBuilder output = new StringBuilder("Here are the matching tasks in your list:\n");
+        String response = executeForGUI(tasks, storage);
+        ui.showMessage(response);
+        return false;
+    }
+
+    /**
+     * Executes the find command for GUI mode.
+     *
+     * @param tasks   The task list containing the tasks.
+     * @param storage The storage handler (not used here).
+     * @return A string containing the search results.
+     * @throws TaskmaxException If an error occurs during the search.
+     */
+    @Override
+    public String executeForGUI(TaskList tasks, Storage storage) throws TaskmaxException {
+        StringBuilder output = new StringBuilder("\nHere are the matching tasks in your list:\n");
         boolean isFound = false;
 
         for (int i = 0; i < tasks.size(); i++) {
@@ -41,12 +56,7 @@ public class FindCommand extends Command {
             }
         }
 
-        if (!isFound) {
-            ui.showMessage("No tasks found matching your search keyword.");
-        } else {
-            ui.showMessage(output.toString());
-        }
-
-        return false;
+        return isFound ? Ui.LINE + output.toString() + Ui.LINE
+                       : Ui.LINE + "\nNo tasks found matching your search keyword.\n" + Ui.LINE;
     }
 }

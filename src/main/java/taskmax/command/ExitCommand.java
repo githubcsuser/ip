@@ -32,4 +32,25 @@ public class ExitCommand extends Command {
                 + "See you again soon!\n");
         return true;
     }
+
+    /**
+     * Executes the exit command for GUI mode.
+     *
+     * @param tasks   The task list containing the tasks.
+     * @param storage The storage handler for saving tasks.
+     * @return A string response for GUI output.
+     */
+    @Override
+    public String executeForGUI(TaskList tasks, Storage storage) {
+        try {
+            storage.saveTasks(tasks.getTasks());
+            return Ui.LINE
+                    + "\nTasks have been saved to my drive!\n"
+                    + "I hope that you are satisfied with your service.\n"
+                    + "See you again soon!\n"
+                    + Ui.LINE;
+        } catch (IOException e) {
+            return "Error saving tasks to my drive!";
+        }
+    }
 }

@@ -21,15 +21,29 @@ public class ListCommand extends Command {
      */
     @Override
     public boolean execute(TaskList tasks, Ui ui, Storage storage) throws TaskmaxException {
+        String response = executeForGUI(tasks, storage);
+        ui.showMessage(response);
+        return false;
+    }
+
+    /**
+     * Executes the list command for GUI mode.
+     *
+     * @param tasks   The task list containing the tasks.
+     * @param storage The storage handler (not used here).
+     * @return A string containing the list of tasks.
+     * @throws TaskmaxException If an error occurs while accessing tasks.
+     */
+    @Override
+    public String executeForGUI(TaskList tasks, Storage storage) throws TaskmaxException {
         if (tasks.isEmpty()) {
-            ui.showMessage("Your task list is empty! Start adding tasks to see them in the list.");
+            return Ui.LINE + "\nYour task list is empty! Start adding tasks to see them in the list.\n" + Ui.LINE;
         } else {
-            StringBuilder output = new StringBuilder("\nHere are the tasks in your list:\n");
+            StringBuilder output = new StringBuilder(Ui.LINE + "\nHere are the tasks in your list:\n");
             for (int i = 0; i < tasks.size(); i++) {
                 output.append(i + 1).append(". ").append(tasks.get(i)).append("\n");
             }
-            ui.showMessage(output.toString());
+            return output.toString() + Ui.LINE;
         }
-        return false;
     }
 }

@@ -31,9 +31,25 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public boolean execute(TaskList tasks, Ui ui, Storage storage) throws TaskmaxException {
-        tasks.markTask(index, false);
-        ui.showMessage("I've unmarked your task.\n"
-                + "Don't give up on it yet!");
+        String response = executeForGUI(tasks, storage);
+        ui.showMessage(response);
         return false;
+    }
+
+    /**
+     * Executes the unmark command for GUI mode.
+     *
+     * @param tasks   The task list containing the tasks.
+     * @param storage The storage handler for saving task updates.
+     * @return A string response confirming the task has been unmarked.
+     * @throws TaskmaxException If the index is out of bounds.
+     */
+    @Override
+    public String executeForGUI(TaskList tasks, Storage storage) throws TaskmaxException {
+        tasks.markTask(index, false);
+        return Ui.LINE
+                + "\nI've unmarked your task.\n"
+                + "Don't give up on it yet!\n"
+                + Ui.LINE;
     }
 }

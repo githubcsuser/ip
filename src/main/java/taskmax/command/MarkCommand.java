@@ -31,9 +31,25 @@ public class MarkCommand extends Command {
      */
     @Override
     public boolean execute(TaskList tasks, Ui ui, Storage storage) throws TaskmaxException {
-        tasks.markTask(index, true);
-        ui.showMessage("Nice! I've marked your task as done.\n"
-                + "Keep up the good work!");
+        String response = executeForGUI(tasks, storage);
+        ui.showMessage(response);
         return false;
+    }
+
+    /**
+     * Executes the mark command for GUI mode.
+     *
+     * @param tasks   The task list containing the tasks.
+     * @param storage The storage handler for saving task updates.
+     * @return A string response confirming the task has been marked as done.
+     * @throws TaskmaxException If the index is out of bounds.
+     */
+    @Override
+    public String executeForGUI(TaskList tasks, Storage storage) throws TaskmaxException {
+        tasks.markTask(index, true);
+        return Ui.LINE
+                + "\nNice! I've marked your task as done.\n"
+                + "Keep up the good work!\n"
+                + Ui.LINE;
     }
 }
