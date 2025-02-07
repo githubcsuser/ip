@@ -13,6 +13,7 @@ import java.io.IOException;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -37,6 +38,16 @@ public class Storage {
      * @throws IOException If an error occurs during file writing.
      */
     public void saveTasks(List<Task> tasks) throws IOException {
+        saveTasks(tasks.toArray(new Task[0])); // Convert list to varargs
+    }
+
+    /**
+     * Saves tasks using varargs.
+     *
+     * @param tasks The tasks to be saved.
+     * @throws IOException If an error occurs during file writing.
+     */
+    public void saveTasks(Task... tasks) throws IOException {
         File file = new File(filePath);
         file.getParentFile().mkdirs();
 

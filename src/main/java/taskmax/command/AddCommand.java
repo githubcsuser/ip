@@ -7,35 +7,38 @@ import taskmax.task.Task;
 import taskmax.ui.Ui;
 
 /**
- * Represents a command to add a task to the task list.
+ * Represents a command to add one or more tasks to the task list.
  */
 public class AddCommand extends Command {
-    private final Task task;
+    private final Task[] tasksToAdd;
 
     /**
-     * Constructs an AddCommand with the specified task.
+     * Constructs an AddCommand with one or more tasks.
      *
-     * @param task The task to be added to the task list.
+     * @param tasksToAdd The tasks to be added to the task list.
      */
-    public AddCommand(Task task) {
-        this.task = task;
+    public AddCommand(Task... tasksToAdd) {
+        this.tasksToAdd = tasksToAdd;
     }
 
     /**
-     * Executes the add command by adding the specified task to the task list.
+     * Executes the add command by adding the specified tasks to the task list.
      *
      * @param tasks   The task list containing the tasks.
      * @param ui      The UI instance for displaying messages.
      * @param storage The storage handler for saving task updates.
      * @return False, as this command does not terminate the application.
-     * @throws TaskmaxException If an error occurs while adding the task.
+     * @throws TaskmaxException If an error occurs while adding the tasks.
      */
     @Override
     public boolean execute(TaskList tasks, Ui ui, Storage storage) throws TaskmaxException {
-        tasks.addTask(task);
-        ui.showMessage("Got it. I've added this task:\n  "
-                + task.toString()
-                + "\nNow you have " + tasks.size() + " tasks in the list.");
+        StringBuilder response = new StringBuilder("Got it. I've added the following tasks:\n");
+        for (Task task : tasksToAdd) {
+            tasks.addTask(task);
+            response.append("  ").append(task.toString()).append("\n");
+        }
+        response.append("Now you have ").append(tasks.size()).append(" tasks in the list.");
+        ui.showMessage(response.toString());
         return false;
     }
 
@@ -45,15 +48,16 @@ public class AddCommand extends Command {
      * @param tasks   The task list containing the tasks.
      * @param storage The storage handler for saving task updates.
      * @return The response message for the GUI.
-     * @throws TaskmaxException If an error occurs while adding the task.
+     * @throws TaskmaxException If an error occurs while adding the tasks.
      */
     @Override
     public String executeForGUI(TaskList tasks, Storage storage) throws TaskmaxException {
-        tasks.addTask(task);
-        return Ui.LINE
-                + "\nGot it. I've added this task:\n  "
-                + task.toString()
-                + "\nNow you have " + tasks.size() + " tasks in the list.\n"
-                + Ui.LINE;
+        StringBuilder response = new StringBuilder(Ui.LINE + "\nGot it. I've added the following tasks:\n");
+        for (Task task : tasksToAdd) {
+            tasks.addTask(task);
+            response.append("  ").append(task.toString()).append("\n");
+        }
+        response.append("Now you have ").append(tasks.size()).append(" tasks in the list.\n").append(Ui.LINE);
+        return response.toString();
     }
 }

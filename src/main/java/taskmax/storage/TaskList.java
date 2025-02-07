@@ -4,10 +4,10 @@ import taskmax.exception.TaskmaxException;
 import taskmax.task.Task;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
-
  * Represents a list of tasks and provides methods to manipulate them.
  */
 public class TaskList {
@@ -30,12 +30,12 @@ public class TaskList {
     }
 
     /**
-     * Adds a task to the task list.
+     * Adds one or more tasks to the task list.
      *
-     * @param task The task to be added.
+     * @param tasks The tasks to be added.
      */
-    public void addTask(Task task) {
-        tasks.add(task);
+    public void addTask(Task... tasks) {
+        this.tasks.addAll(Arrays.asList(tasks));
     }
 
     /**
