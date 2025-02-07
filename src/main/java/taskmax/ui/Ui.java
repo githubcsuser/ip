@@ -36,12 +36,16 @@ public class Ui {
     }
 
     /**
-     * Displays a formatted message.
+     * Displays one or multiple formatted messages.
      *
-     * @param message The message to display.
+     * @param messages The messages to display.
      */
-    public void showMessage(String message) {
-        System.out.println(LINE + message + "\n" + LINE);
+    public void showMessage(String... messages) {
+        System.out.println(LINE);
+        for (String message : messages) {
+            System.out.println(message);
+        }
+        System.out.println(LINE);
     }
 
     /**
