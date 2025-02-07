@@ -16,11 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-<<<<<<< HEAD
- * Handles the storage of tasks in a file.
-=======
  * Handles loading and saving tasks to a storage file.
->>>>>>> branch-A-CodingStandard
  */
 public class Storage {
     private final String filePath;
@@ -28,28 +24,17 @@ public class Storage {
     /**
      * Constructs a Storage instance with the specified file path.
      *
-<<<<<<< HEAD
-     * @param filePath The file path where tasks are stored.
-=======
      * @param filePath The path where tasks are stored.
->>>>>>> branch-A-CodingStandard
      */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
     /**
-<<<<<<< HEAD
-     * Saves the given list of tasks to a file.
-     *
-     * @param tasks The list of tasks to be saved.
-     * @throws IOException If an error occurs while writing to the file.
-=======
      * Saves the list of tasks to the storage file.
      *
      * @param tasks The list of tasks to be saved.
      * @throws IOException If an error occurs during file writing.
->>>>>>> branch-A-CodingStandard
      */
     public void saveTasks(List<Task> tasks) throws IOException {
         File file = new File(filePath);
@@ -63,17 +48,10 @@ public class Storage {
     }
 
     /**
-<<<<<<< HEAD
-     * Loads tasks from the file and returns them as a list.
-     *
-     * @return A list of tasks loaded from the file.
-     * @throws IOException If an error occurs while reading the file.
-=======
      * Loads the list of tasks from the storage file.
      *
      * @return A list of tasks retrieved from the file.
      * @throws IOException If an error occurs during file reading.
->>>>>>> branch-A-CodingStandard
      */
     public List<Task> loadTasks() throws IOException {
         File file = new File(filePath);
@@ -96,17 +74,10 @@ public class Storage {
     }
 
     /**
-<<<<<<< HEAD
-     * Serializes a task into a string format for storage.
-     *
-     * @param task The task to be serialized.
-     * @return A string representation of the task.
-=======
-     * Serializes a Task object into a formatted string for storage.
+     * Serialises a Task object into a formatted string for storage.
      *
      * @param task The task to serialize.
      * @return The serialized string representation of the task.
->>>>>>> branch-A-CodingStandard
      */
     private String serializeTask(Task task) {
         String typeCode = "";
@@ -127,17 +98,10 @@ public class Storage {
     }
 
     /**
-<<<<<<< HEAD
-     * Deserializes a task from a string format.
-     *
-     * @param line The string representation of the task.
-     * @return The deserialized task, or {@code null} if parsing fails.
-=======
-     * Deserializes a line from the storage file into a Task object.
+     * Deserialises a line from the storage file into a Task object.
      *
      * @param line The stored task data in string format.
      * @return The corresponding Task object, or null if the format is invalid.
->>>>>>> branch-A-CodingStandard
      */
     private Task deserializeTask(String line) {
         try {

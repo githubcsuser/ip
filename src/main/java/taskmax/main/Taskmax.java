@@ -55,6 +55,15 @@ public class Taskmax {
         ui.close();
     }
 
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parse(input);
+            return command.executeForGUI(tasks, storage);
+        } catch (TaskmaxException e) {
+            return e.getMessage();
+        }
+    }
+
     /**
      * The main entry point for Taskmax.
      *

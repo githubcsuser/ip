@@ -26,7 +26,7 @@ public class AddCommand extends Command {
      *
      * @param tasks   The task list containing the tasks.
      * @param ui      The UI instance for displaying messages.
-     * @param storage The storage handler for saving task updates (not used here).
+     * @param storage The storage handler for saving task updates.
      * @return False, as this command does not terminate the application.
      * @throws TaskmaxException If an error occurs while adding the task.
      */
@@ -37,5 +37,23 @@ public class AddCommand extends Command {
                 + task.toString()
                 + "\nNow you have " + tasks.size() + " tasks in the list.");
         return false;
+    }
+
+    /**
+     * Executes the command for GUI mode.
+     *
+     * @param tasks   The task list containing the tasks.
+     * @param storage The storage handler for saving task updates.
+     * @return The response message for the GUI.
+     * @throws TaskmaxException If an error occurs while adding the task.
+     */
+    @Override
+    public String executeForGUI(TaskList tasks, Storage storage) throws TaskmaxException {
+        tasks.addTask(task);
+        return Ui.LINE
+                + "\nGot it. I've added this task:\n  "
+                + task.toString()
+                + "\nNow you have " + tasks.size() + " tasks in the list.\n"
+                + Ui.LINE;
     }
 }

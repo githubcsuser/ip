@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="taskmax.ui.MainWindow"
+            prefHeight="600.0" prefWidth="800.0">
+
+    <children>
+        <ScrollPane fx:id="scrollPane" prefHeight="535.0" prefWidth="780.0"
+                    layoutX="10.0" layoutY="10.0"
+                    fitToWidth="true" vbarPolicy="ALWAYS">
+            <content>
+                <VBox fx:id="dialogContainer" spacing="10.0"
+                      alignment="TOP_LEFT" prefWidth="780.0"/>
+            </content>
+        </ScrollPane>
+        <TextField fx:id="userInput" layoutX="10.0" layoutY="560.0"
+                   prefWidth="700.0" onAction="#handleUserInput"/>
+
+        <!-- Send button (SHIFTED RIGHT) -->
+        <Button fx:id="sendButton" layoutX="720.0" layoutY="560.0"
+                mnemonicParsing="false" onAction="#handleUserInput" text="Send"/>
+    </children>
+
+</AnchorPane>

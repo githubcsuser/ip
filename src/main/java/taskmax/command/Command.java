@@ -21,4 +21,19 @@ public abstract class Command {
      * @throws TaskmaxException If an error occurs while executing the command.
      */
     public abstract boolean execute(TaskList tasks, Ui ui, Storage storage) throws TaskmaxException;
+
+    /**
+     * Executes the command for GUI mode.
+     *
+     * This method is intended to be overridden by subclasses. By default, it returns
+     * a message indicating that the command is not implemented for GUI mode.
+     *
+     * @param tasks   The task list containing the tasks.
+     * @param storage The storage handler for saving or loading tasks.
+     * @return A string response for GUI output.
+     * @throws TaskmaxException If an error occurs while executing the command.
+     */
+    public String executeForGUI(TaskList tasks, Storage storage) throws TaskmaxException {
+        return "GUI mode not implemented for this command.";
+    }
 }
