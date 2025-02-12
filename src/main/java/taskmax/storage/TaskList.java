@@ -26,6 +26,7 @@ public class TaskList {
      * @param tasks The list of tasks to initialise the task list with.
      */
     public TaskList(List<Task> tasks) {
+        assert tasks != null : "Task list should not be null";
         this.tasks = tasks;
     }
 
@@ -35,6 +36,7 @@ public class TaskList {
      * @param tasks The tasks to be added.
      */
     public void addTask(Task... tasks) {
+        assert tasks != null : "Tasks to add should not be null";
         this.tasks.addAll(Arrays.asList(tasks));
     }
 
@@ -46,6 +48,7 @@ public class TaskList {
      * @throws TaskmaxException If the index is invalid.
      */
     public Task removeTask(int index) throws TaskmaxException {
+        assert index >= 0 && index < tasks.size() : "Index out of bounds when removing task";
         validateIndex(index);
         return tasks.remove(index);
     }
@@ -58,6 +61,7 @@ public class TaskList {
      * @throws TaskmaxException If the index is invalid.
      */
     public void markTask(int index, boolean isDone) throws TaskmaxException {
+        assert index >= 0 && index < tasks.size() : "Index out of bounds when marking task";
         validateIndex(index);
         if (isDone) {
             tasks.get(index).markAsDone();
@@ -83,6 +87,7 @@ public class TaskList {
      * @throws TaskmaxException If the index is invalid.
      */
     public Task get(int index) throws TaskmaxException {
+        assert index >= 0 && index < tasks.size() : "Index out of bounds when retrieving task";
         validateIndex(index);
         return tasks.get(index);
     }
