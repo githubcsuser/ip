@@ -30,6 +30,8 @@ public class Parser {
      * @throws TaskmaxException If the input is invalid or incomplete.
      */
     public static Command parse(String input) throws TaskmaxException {
+        assert input != null && !input.trim().isEmpty() : "Input command should not be null or empty";
+
         String[] words = input.split(" ", 2);
         String commandWord = words[0];
 
@@ -80,11 +82,12 @@ public class Parser {
     /**
      * Validates that the user input contains the expected number of parts.
      *
-     * @param words The split input command.
+     * @param words        The split input command.
      * @param errorMessage The error message to display if validation fails.
      * @throws TaskmaxException If the command is incomplete.
      */
     private static void validateCommand(String[] words, String errorMessage) throws TaskmaxException {
+        assert words.length > 1 : "Missing argument in command";
         if (words.length < 2) {
             throw new TaskmaxException(errorMessage);
         }
@@ -93,17 +96,17 @@ public class Parser {
     /**
      * Validates that the provided parts array has the expected number of elements.
      *
-     * @param parts The split components of a command argument.
+     * @param parts          The split components of a command argument.
      * @param expectedLength The expected number of parts.
-     * @param errorMessage The error message to display if validation fails.
+     * @param errorMessage   The error message to display if validation fails.
      * @throws TaskmaxException If the provided parts array is incomplete.
      */
     private static void validateParts(String[] parts, int expectedLength, String errorMessage) throws TaskmaxException {
+        assert parts.length >= expectedLength : "Incomplete command arguments";
         if (parts.length < expectedLength) {
             throw new TaskmaxException(errorMessage);
         }
     }
-
     /**
      * Returns the help message when an invalid command is entered.
      *

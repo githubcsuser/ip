@@ -23,9 +23,8 @@ public class MainWindow {
 
     private Taskmax taskmax;
 
-    // Load images for user and Taskmax bot
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
-    private Image taskImage = new Image(this.getClass().getResourceAsStream("/images/Taskmax.png"));
+    private Image userImage = new Image(getClass().getResourceAsStream("/images/User.png"));
+    private Image taskImage = new Image(getClass().getResourceAsStream("/images/taskmax.png"));
 
     @FXML
     public void initialize() {
