@@ -1,25 +1,31 @@
 package taskmax.command;
 
-import taskmax.exception.TaskmaxException;
 import taskmax.storage.Storage;
 import taskmax.storage.TaskList;
 import taskmax.task.Task;
 import taskmax.ui.Ui;
+import taskmax.task.ToDo;
+import taskmax.task.Deadline;
+import taskmax.task.Event;
+import taskmax.exception.TaskmaxException;
 
 /**
  * Represents a command to add one or more tasks to the task list.
  */
 public class AddCommand extends Command {
     private final Task[] tasksToAdd;
+    private final int priority; // Add the priority field
 
     /**
-     * Constructs an AddCommand with one or more tasks.
+     * Constructs an AddCommand with one or more tasks and a priority.
      *
      * @param tasksToAdd The tasks to be added to the task list.
+     * @param priority   The priority to assign to the tasks.
      */
-    public AddCommand(Task... tasksToAdd) {
+    public AddCommand(int priority, Task... tasksToAdd) {
         assert tasksToAdd != null : "Tasks to add should not be null";
         this.tasksToAdd = tasksToAdd;
+        this.priority = priority;
     }
 
     /**
@@ -60,7 +66,7 @@ public class AddCommand extends Command {
     private String addTasksToList(TaskList tasks) {
         assert tasks != null : "Task list should not be null";
         StringBuilder response = new StringBuilder(Ui.LINE
-                                                   + "\nGot it. I've added the following tasks:\n");
+                + "\nGot it. I've added the following tasks:\n");
         for (Task task : tasksToAdd) {
             assert task != null : "Task should not be null";
             tasks.addTask(task);

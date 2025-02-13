@@ -4,16 +4,15 @@ import taskmax.task.Deadline;
 import taskmax.task.Event;
 import taskmax.task.Task;
 import taskmax.task.ToDo;
+import taskmax.exception.TaskmaxException;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -39,7 +38,7 @@ public class Storage {
      */
     public void saveTasks(List<Task> tasks) throws IOException {
         assert tasks != null : "Tasks should not be null";
-        saveTasks(tasks.toArray(new Task[0])); // Convert list to varargs
+        saveTasks(tasks.toArray(new Task[0]));
     }
 
     /**
@@ -87,7 +86,7 @@ public class Storage {
     }
 
     /**
-     * Serialises a Task object into a formatted string for storage.
+     * Serializes a Task object into a formatted string for storage.
      *
      * @param task The task to serialize.
      * @return The serialized string representation of the task.
@@ -96,6 +95,7 @@ public class Storage {
         assert task != null : "Task should not be null";
         String typeCode = "";
         String extraData = "";
+        String priority = String.valueOf(task.getPriority());
 
         if (task instanceof ToDo) {
             typeCode = "T";
@@ -108,11 +108,11 @@ public class Storage {
                     + " | " + ((Event) task).getEnd().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
         }
 
-        return typeCode + " | " + (task.isDone() ? "1" : "0") + " | " + task.getDescription() + extraData;
+        return typeCode + " | " + (task.isDone() ? "1" : "0") + " | " + task.getDescription() + " | " + priority + extraData;
     }
 
     /**
-     * Deserialises a line from the storage file into a Task object.
+     * Deserializes a line from the storage file into a Task object.
      *
      * @param line The stored task data in string format.
      * @return The corresponding Task object, or null if the format is invalid.
@@ -120,7 +120,7 @@ public class Storage {
     private Task deserializeTask(String line) {
         try {
             String[] parts = line.split(" \\| ");
-            if (parts.length < 3) {
+            if (parts.length < 4) {
                 System.out.println("WARNING: Skipping invalid task format: " + line);
                 return null;
             }
@@ -128,17 +128,18 @@ public class Storage {
             String typeCode = parts[0];
             boolean isDone = parts[1].equals("1");
             String description = parts[2];
+            int priority = Integer.parseInt(parts[3]);
 
-            Task task;
+            Task task = null;
             switch (typeCode) {
                 case "T":
-                    task = new ToDo(description);
+                    task = new ToDo(description, priority);
                     break;
                 case "D":
-                    task = new Deadline(description, parts[3]);
+                    task = new Deadline(description, parts[4], priority);
                     break;
                 case "E":
-                    task = new Event(description, parts[3], parts[4]);
+                    task = new Event(description, parts[4], parts[5], priority);
                     break;
                 default:
                     return null;

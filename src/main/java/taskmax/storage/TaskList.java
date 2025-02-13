@@ -1,10 +1,12 @@
 package taskmax.storage;
 
-import taskmax.exception.TaskmaxException;
 import taskmax.task.Task;
+import taskmax.task.Deadline;
+import taskmax.exception.TaskmaxException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -23,7 +25,7 @@ public class TaskList {
     /**
      * Constructs a task list with a given list of tasks.
      *
-     * @param tasks The list of tasks to initialise the task list with.
+     * @param tasks The list of tasks to initialize the task list with.
      */
     public TaskList(List<Task> tasks) {
         assert tasks != null : "Task list should not be null";
@@ -113,6 +115,27 @@ public class TaskList {
      */
     public boolean isEmpty() {
         return tasks.isEmpty();
+    }
+
+    /**
+     * Sorts the tasks based on their deadlines (if applicable).
+     */
+    public void sortByDeadline() {
+        assert tasks != null : "Task list should not be null";
+        tasks.sort(Comparator.comparing(task -> {
+            if (task instanceof Deadline) {
+                return ((Deadline) task).getDateTime();
+            } else {
+                return null;
+            }
+        }));
+    }
+
+    /**
+     * Sorts the tasks based on priority (if applicable).
+     */
+    public void sortByPriority() {
+        tasks.sort(Comparator.comparingInt(Task::getPriority));
     }
 
     /**

@@ -1,17 +1,15 @@
 package taskmax.task;
 
-/**
- * Represents a ToDo task, which has a description but no specific date or time.
- */
 public class ToDo extends Task {
 
     /**
-     * Constructs a ToDo task with the given description.
+     * Constructs a ToDo task with the given description and priority.
      *
      * @param description The description of the ToDo task.
+     * @param priority    The priority of the task.
      */
-    public ToDo(String description) {
-        super(description, TaskType.TODO);
+    public ToDo(String description, int priority) {
+        super(description, TaskType.TODO, priority); // Pass priority to the Task constructor
     }
 
     /**

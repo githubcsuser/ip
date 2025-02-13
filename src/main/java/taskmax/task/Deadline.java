@@ -3,9 +3,6 @@ package taskmax.task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- * Represents a deadline task with a specific due date and time.
- */
 public class Deadline extends Task {
     private static final DateTimeFormatter INPUT_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
     private static final DateTimeFormatter OUTPUT_FORMATTER = DateTimeFormatter.ofPattern("MMM dd yyyy, hh:mm a");
@@ -17,9 +14,10 @@ public class Deadline extends Task {
      *
      * @param description    The description of the deadline task.
      * @param dateTimeString The due date and time in "yyyy-MM-dd HHmm" format.
+     * @param priority       The priority of the task.
      */
-    public Deadline(String description, String dateTimeString) {
-        super(description, TaskType.DEADLINE);
+    public Deadline(String description, String dateTimeString, int priority) {
+        super(description, TaskType.DEADLINE, priority); // Pass priority to the Task constructor
         this.dateTime = LocalDateTime.parse(dateTimeString, INPUT_FORMATTER);
     }
 
