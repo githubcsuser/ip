@@ -63,11 +63,16 @@ public class TaskList {
     public void markTask(int index, boolean isDone) throws TaskmaxException {
         assert index >= 0 && index < tasks.size() : "Index out of bounds when marking task";
         validateIndex(index);
-        if (isDone) {
-            tasks.get(index).markAsDone();
-        } else {
-            tasks.get(index).markAsNotDone();
-        }
+        tasks.stream()
+                .skip(index)
+                .findFirst()
+                .ifPresent(task -> {
+                    if (isDone) {
+                        task.markAsDone();
+                    } else {
+                        task.markAsNotDone();
+                    }
+                });
     }
 
     /**
