@@ -16,7 +16,7 @@ class StorageTest {
     void testSaveAndLoadTasks() throws IOException {
         String testFilePath = "data/test_tasks.txt";
         Storage storage = new Storage(testFilePath);
-        Task task = new ToDo("Test Storage");
+        Task task = new ToDo("Test Storage", 1);
 
         storage.saveTasks(List.of(task));
         List<Task> loadedTasks = storage.loadTasks();

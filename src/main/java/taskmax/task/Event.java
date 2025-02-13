@@ -3,9 +3,6 @@ package taskmax.task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- * Represents an event task with a start and end date/time.
- */
 public class Event extends Task {
     private static final DateTimeFormatter INPUT_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
     private static final DateTimeFormatter OUTPUT_FORMATTER = DateTimeFormatter.ofPattern("MMM dd yyyy, hh:mm a");
@@ -19,9 +16,10 @@ public class Event extends Task {
      * @param description The description of the event.
      * @param startString The start date/time in "yyyy-MM-dd HHmm" format.
      * @param endString   The end date/time in "yyyy-MM-dd HHmm" format.
+     * @param priority    The priority of the task.
      */
-    public Event(String description, String startString, String endString) {
-        super(description, TaskType.EVENT);
+    public Event(String description, String startString, String endString, int priority) {
+        super(description, TaskType.EVENT, priority); // Pass priority to the Task constructor
         this.start = LocalDateTime.parse(startString, INPUT_FORMATTER);
         this.end = LocalDateTime.parse(endString, INPUT_FORMATTER);
     }

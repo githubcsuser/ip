@@ -7,17 +7,20 @@ public class Task {
     private final String description;
     private boolean isDone;
     private final TaskType type;
+    private final int priority;
 
     /**
-     * Constructs a Task with a given description and type.
+     * Constructs a Task with a given description, type, and priority.
      *
      * @param description The description of the task.
      * @param type        The type of the task (ToDo, Deadline, Event).
+     * @param priority    The priority of the task (e.g., 1 for high, 2 for medium, 3 for low).
      */
-    public Task(String description, TaskType type) {
+    public Task(String description, TaskType type, int priority) {
         this.description = description;
         this.isDone = false;
         this.type = type;
+        this.priority = priority;
     }
 
     /**
@@ -69,5 +72,14 @@ public class Task {
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
+    }
+
+    /**
+     * Retrieves the priority of the task.
+     *
+     * @return The priority of the task.
+     */
+    public int getPriority() {
+        return priority;
     }
 }

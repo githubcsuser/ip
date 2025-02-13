@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class TaskListTest {
     @Test
     void testMarkTaskAsDone() throws TaskmaxException {
-        TaskList taskList = new TaskList(List.of(new ToDo("Test Task")));
+        TaskList taskList = new TaskList(List.of(new ToDo("Test Task", 1)));
 
         taskList.get(0).markAsDone();
         assertTrue(taskList.get(0).isDone());

@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 class TaskTest {
     @Test
     void testMarkAsDone() {
-        Task task = new ToDo("Finish CS2103");
+        Task task = new ToDo("Finish CS2103", 1);
         assertFalse(task.isDone()); // Task should start as not done
 
         task.markAsDone();
