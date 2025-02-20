@@ -56,7 +56,7 @@ public class Parser {
                 return handleEventCommand(text);
             case "find":
                 return handleFindCommand(text);
-            case "sort": // Handle the sort command
+            case "sort":
                 return handleSortCommand(text);
             default:
                 throw new TaskmaxException(getHelpMessage());
@@ -185,15 +185,15 @@ public class Parser {
         return Ui.LINE + "\nHey there! There are 9 things I can help you with! \n"
                 + "\n1. List: Enter \"list\" and I will list out all the tasks you have given me!\n"
                 + "2. Todo: Enter \"todo <theTaskName> priority <number>\" to add a task you plan to do!\n"
-                + "3. Deadlines: Enter \"deadline <theTaskName> /by <yyyy-mm-dd> <24hrTime> priority <number>\" to add a task with a specific deadline!\n"
-                + "4. Events: Enter \"event <theTaskName> /from <yyyy-mm-dd> <24hrTime> /to <yyyy-mm-dd> <24hrTime> priority <number>\" to add an event!\n"
+                + "3. Deadlines: Enter \"deadline <theTaskName> /by <yyyy-mm-dd> <24hrTime> priority <number>\"" + "\n    to add a task with a specific deadline!\n"
+                + "4. Events: Enter \"event <theTaskName> /from <yyyy-mm-dd> <24hrTime> /to <yyyy-mm-dd>" + "\n    <24hrTime> priority <number>\" to add an event!\n"
                 + "5. Delete: Enter \"delete <theTaskListNumber>\" to delete a task from the list!\n"
                 + "6. Mark as done: Enter \"mark <TaskListNumber>\" to mark the task as complete in the list!\n"
                 + "7. Mark as undone: Enter \"unmark <TaskListNumber>\" to mark the task as incomplete in the list!\n"
-                + "8. Find: Enter \"find <Word(s)YouWantToFind>\" to find tasks that match the keyword in the description.\n"
-                + "9. Sort: Enter \"sort priority\" and I will sort the tasks by their priority!\n"  // Updated line for sort instruction
+                + "8. Find: Enter \"find <Word(s)YouWantToFind>\" to find tasks that match the keyword in the" + "\n    description.\n"
+                + "9. Sort: Enter \"sort priority\" and I will sort the tasks by their priority!\n"
                 + "\nIf you need a refresher, just enter any word!"
-                + "\nIf you are satisfied with your service, enter \"bye\" to save your task list and exit!\n"
+                + "\nIf you are satisfied with your service, enter \"bye\" to save your task list and exit!"
                 + "\nDo remember that my input receptors are sensitive so please be careful with your spelling"
                 + "\nand capital letters for commands!\n"
                 + "\nThat is all and happy scheduling! ~Taskmax :D\n" + Ui.LINE;

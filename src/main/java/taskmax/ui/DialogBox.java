@@ -31,9 +31,9 @@ public class DialogBox extends HBox {
     private DialogBox(String message, Image img, String bgColor) {
         text = new Label(message);
         text.setWrapText(true);
-        text.setMaxWidth(600);
+        text.setMaxWidth(700);
         text.setPadding(new Insets(10));
-        text.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 15px;");
+        text.setStyle("-fx-font-family: 'Comic Sans MS'; -fx-font-size: 15px;");
 
         // Wrap text inside a VBox with background styling
         VBox textContainer = new VBox(text);

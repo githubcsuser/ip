@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 public class Ui {
     private final Scanner scanner;
-    public static final String LINE = "-".repeat(100);
+    public static final String LINE = "-".repeat(106);
 
     /**
      * Constructs a Ui instance with a Scanner for reading user input.
