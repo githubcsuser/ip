@@ -9,7 +9,7 @@ public class ToDo extends Task {
      * @param priority    The priority of the task.
      */
     public ToDo(String description, int priority) {
-        super(description, TaskType.TODO, priority); // Pass priority to the Task constructor
+        super(description, TaskType.TODO, priority);
     }
 
     /**

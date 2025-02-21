@@ -29,7 +29,7 @@ public class MainWindow {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        userInput.setOnAction(event -> handleUserInput()); // Enable Enter key to send messages
+        userInput.setOnAction(event -> handleUserInput());
     }
 
     public void setTaskmax(Taskmax taskmax) {
@@ -42,19 +42,19 @@ public class MainWindow {
      */
     @FXML
     private void handleUserInput() {
-        System.out.println("Send button clicked!"); // Debugging print statement
+        System.out.println("Send button clicked!");
         String input = userInput.getText();
-        System.out.println("User input: " + input); // Debug: Check if input is captured
+        System.out.println("User input: " + input);
 
         if (!input.isEmpty()) {
             String response = taskmax.getResponse(input);
-            System.out.println("Bot response: " + response); // Debug: Check if response is generated
+            System.out.println("Bot response: " + response);
 
             dialogContainer.getChildren().addAll(
                     DialogBox.getUserDialog(input, userImage),
                     DialogBox.getTaskDialog(response, taskImage)
             );
-            System.out.println("Messages added to dialog container!"); // Debug: Check if messages are added
+            System.out.println("Messages added to dialog container!");
 
             userInput.clear();
         }

@@ -2,26 +2,50 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="taskmax.ui.MainWindow"
-            prefHeight="600.0" prefWidth="800.0">
+            prefHeight="1200.0"
+            prefWidth="900.0">
 
     <children>
-        <ScrollPane fx:id="scrollPane" prefHeight="535.0" prefWidth="780.0"
-                    layoutX="10.0" layoutY="10.0"
-                    fitToWidth="true" vbarPolicy="ALWAYS">
+        <ScrollPane fx:id="scrollPane" 
+                    AnchorPane.topAnchor="10.0"
+                    AnchorPane.leftAnchor="10.0"
+                    AnchorPane.rightAnchor="10.0"
+                    AnchorPane.bottomAnchor="55.0"
+                    fitToWidth="true" 
+                    fitToHeight="true"
+                    vbarPolicy="ALWAYS">
             <content>
-                <VBox fx:id="dialogContainer" spacing="10.0"
-                      alignment="TOP_LEFT" prefWidth="780.0"/>
+                <VBox fx:id="dialogContainer" spacing="20.0"
+                      alignment="TOP_LEFT"
+                      minWidth="-Infinity"
+                      minHeight="-Infinity"
+                      style="-fx-background-image: url('images/wallpaper.png');
+                             -fx-background-size: auto;
+                             -fx-background-repeat: repeat;
+                             -fx-background-position: top left;">
+                    <!-- Chat content goes here -->
+                </VBox>
             </content>
         </ScrollPane>
-        <TextField fx:id="userInput" layoutX="10.0" layoutY="560.0"
-                   prefWidth="700.0" onAction="#handleUserInput"/>
+
+        <TextField fx:id="userInput"
+                   AnchorPane.leftAnchor="10.0"
+                   AnchorPane.bottomAnchor="10.0"
+                   AnchorPane.rightAnchor="65.0"
+                   onAction="#handleUserInput"/>
 
         <!-- Send button (SHIFTED RIGHT) -->
-        <Button fx:id="sendButton" layoutX="720.0" layoutY="560.0"
-                mnemonicParsing="false" onAction="#handleUserInput" text="Send"/>
+        <Button fx:id="sendButton"
+                AnchorPane.rightAnchor="10.0"
+                AnchorPane.bottomAnchor="10.0"
+                mnemonicParsing="false"
+                onAction="#handleUserInput"
+                text="Send"/>
     </children>
 
 </AnchorPane>
