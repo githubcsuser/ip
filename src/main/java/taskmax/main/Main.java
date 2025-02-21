@@ -14,6 +14,7 @@ import taskmax.ui.MainWindow;
 
 /**
  * The main entry point for Taskmax's GUI.
+ * This class is responsible for initializing the application and displaying the main window.
  */
 public class Main extends Application {
     private static final Logger logger = Logger.getLogger(Main.class.getName());
@@ -21,11 +22,18 @@ public class Main extends Application {
 
     /**
      * Initializes Taskmax with the given file path.
+     *
+     * @return A Taskmax instance initialized with the file path "data/tasks.txt".
      */
     private Taskmax initializeTaskmax() {
-        return new Taskmax("data/tasks.txt"); // You could change this to dynamically get the file path
+        return new Taskmax("data/tasks.txt");
     }
 
+    /**
+     * Starts the JavaFX application by setting up the main window and scene.
+     *
+     * @param stage The primary stage for the application.
+     */
     @Override
     public void start(Stage stage) {
         try {
@@ -56,12 +64,22 @@ public class Main extends Application {
     private void showErrorAlert(String title, String message) {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle(title);
-        alert.setHeaderText(null); // No header text
+        alert.setHeaderText(null);
         alert.setContentText(message);
-        alert.showAndWait(); // Display the alert and wait for the user to close it
+        alert.showAndWait();
     }
 
+    /**
+     * The main method to launch the JavaFX application.
+     *
+     * @param args Command-line arguments.
+     */
     public static void main(String[] args) {
         launch(args);
     }
 }
+
+/*
+ * AI tools (ChatGPT) were used to add JavaDoc to all methods in this class to enhance code documentation.
+ * Specifically, ChatGPT helped generate concise descriptions for each method's functionality based on the code provided.
+ */
