@@ -76,7 +76,7 @@ To add a task with a specific deadline, use the `deadline` command.
 
 **Expected Output:**
 >Got it. I've added the following tasks:  
-> [D][ ] Individual Report (by: Oct 15 2023, 06:00 PM) (priority 2)  
+> [D][ ] Individual Project (by: Oct 15 2023, 06:00 PM) (priority 2)  
 > Now you have 2 tasks in the list.
 
 ---

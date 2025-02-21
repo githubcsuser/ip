@@ -19,7 +19,7 @@ public class Event extends Task {
      * @param priority    The priority of the task.
      */
     public Event(String description, String startString, String endString, int priority) {
-        super(description, TaskType.EVENT, priority); // Pass priority to the Task constructor
+        super(description, TaskType.EVENT, priority);
         this.start = LocalDateTime.parse(startString, INPUT_FORMATTER);
         this.end = LocalDateTime.parse(endString, INPUT_FORMATTER);
     }

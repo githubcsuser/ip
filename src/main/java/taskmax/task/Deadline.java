@@ -17,7 +17,7 @@ public class Deadline extends Task {
      * @param priority       The priority of the task.
      */
     public Deadline(String description, String dateTimeString, int priority) {
-        super(description, TaskType.DEADLINE, priority); // Pass priority to the Task constructor
+        super(description, TaskType.DEADLINE, priority);
         this.dateTime = LocalDateTime.parse(dateTimeString, INPUT_FORMATTER);
     }
 

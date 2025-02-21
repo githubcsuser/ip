@@ -21,7 +21,7 @@ public class DeleteCommand extends Command {
      */
     public DeleteCommand(int index) {
         assert index >= 0 : "Index should not be negative";
-        this.index = index - 1; // Convert one-based index to zero-based index.
+        this.index = index - 1;
     }
 
     /**
@@ -65,7 +65,7 @@ public class DeleteCommand extends Command {
         assert tasks != null : "Task list should not be null";
         try {
             Task removedTask = tasks.removeTask(index);
-            storage.saveTasks(tasks.getTasks()); // Save changes after deleting
+            storage.saveTasks(tasks.getTasks());
             return Ui.LINE
                     + "\nNoted. I've removed this task:\n" + removedTask.toString()
                     + "\nNow you have " + tasks.size() + " tasks in the list.\n"

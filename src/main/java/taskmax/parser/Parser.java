@@ -15,6 +15,7 @@ import taskmax.exception.TaskmaxException;
 import taskmax.task.Deadline;
 import taskmax.task.Event;
 import taskmax.task.ToDo;
+
 import taskmax.ui.Ui;
 
 import java.time.LocalDateTime;
@@ -36,7 +37,9 @@ public class Parser {
     public static Command parse(String input) throws TaskmaxException {
         assert input != null && !input.trim().isEmpty() : "Input command should not be null or empty";
 
-        String[] text = input.split(" ", 2);
+        String NormalisedInput = normaliseInput(input);
+
+        String[] text = NormalisedInput.split(" ", 2);
         String commandText = text[0];
 
         switch (commandText) {
@@ -56,11 +59,21 @@ public class Parser {
                 return handleEventCommand(text);
             case "find":
                 return handleFindCommand(text);
-            case "sort": // Handle the sort command
+            case "sort":
                 return handleSortCommand(text);
             default:
                 throw new TaskmaxException(getHelpMessage());
         }
+    }
+
+    /**
+     * Normalizes the input by trimming extra spaces and converting the command to lowercase.
+     *
+     * @param input The raw user input.
+     * @return The normalized input string.
+     */
+    private static String normaliseInput(String input) {
+        return input.trim().replaceAll("\\s+", " ").toLowerCase();
     }
 
     private static Command handleTaskModification(String command, String[] text) throws TaskmaxException {
@@ -86,7 +99,7 @@ public class Parser {
         if (parts.length < 2) {
             throw new TaskmaxException("Priority not specified! Format: todo <task> priority <priority_level>");
         }
-        int priority = Integer.parseInt(parts[1].trim()); // Extract priority value
+        int priority = Integer.parseInt(parts[1].trim());
         return new AddCommand(priority, new ToDo(parts[0].trim(), priority));
     }
 
@@ -115,7 +128,7 @@ public class Parser {
         int priority;
 
         try {
-            priority = Integer.parseInt(priorityPart);  // Parse the priority level
+            priority = Integer.parseInt(priorityPart);
         } catch (NumberFormatException e) {
             throw new TaskmaxException("Priority not specified correctly! Format: event <task> /from <start_time> /to <end_time> priority <priority_level>");
         }
@@ -124,10 +137,9 @@ public class Parser {
         String endTime = eventParts[2].substring(0, eventParts[2].lastIndexOf("priority")).trim();
 
         try {
-            // Validate the date format
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-            LocalDateTime.parse(startTime, formatter); // Just for validation
-            LocalDateTime.parse(endTime, formatter);   // Just for validation
+            LocalDateTime.parse(startTime, formatter);
+            LocalDateTime.parse(endTime, formatter);
 
             return new AddCommand(priority, new Event(eventParts[0].trim(), startTime, endTime, priority));
 
@@ -191,7 +203,7 @@ public class Parser {
                 + "6. Mark as done: Enter \"mark <TaskListNumber>\" to mark the task as complete in the list!\n"
                 + "7. Mark as undone: Enter \"unmark <TaskListNumber>\" to mark the task as incomplete in the list!\n"
                 + "8. Find: Enter \"find <Word(s)YouWantToFind>\" to find tasks that match the keyword in the description.\n"
-                + "9. Sort: Enter \"sort priority\" and I will sort the tasks by their priority!\n"  // Updated line for sort instruction
+                + "9. Sort: Enter \"sort priority\" and I will sort the tasks by their priority!\n"
                 + "\nIf you need a refresher, just enter any word!"
                 + "\nIf you are satisfied with your service, enter \"bye\" to save your task list and exit!"
                 + "\nDo remember that my input receptors are sensitive so please be careful with your spelling"

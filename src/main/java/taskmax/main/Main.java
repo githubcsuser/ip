@@ -1,15 +1,21 @@
 package taskmax.main;
 
 import java.io.IOException;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javafx.application.Application;
+
 import javafx.fxml.FXMLLoader;
+
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+
+import javafx.stage.Stage;
+
 import taskmax.ui.MainWindow;
 
 /**

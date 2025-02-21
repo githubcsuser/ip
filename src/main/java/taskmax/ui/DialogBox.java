@@ -2,19 +2,23 @@ package taskmax.ui;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
+
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.shape.Circle;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.paint.Color;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.shape.Circle;
+
+
 
 /**
  * Custom control representing dialog boxes for user and Taskmax messages.

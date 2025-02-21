@@ -1,15 +1,12 @@
 package taskmax.storage;
+import taskmax.task.ToDo;
+import taskmax.exception.TaskmaxException;
 
 import org.junit.jupiter.api.Test;
-import taskmax.task.Task;
-import taskmax.task.ToDo;
-import taskmax.storage.TaskList;
-import taskmax.exception.TaskmaxException;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TaskListTest {

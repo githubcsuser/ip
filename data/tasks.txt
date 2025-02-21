@@ -1,4 +1,1 @@
-T | 0 | Buy groceries | 1
-T | 0 | Groom cat | 2
-D | 0 | Individual Project | 4 | 2025-02-21 1600
-E | 0 | Party | 3 | 2025-03-21 1900 | 2025-03-21 2300
+T | 0 | task | 4

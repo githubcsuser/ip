@@ -1,8 +1,10 @@
 package taskmax.command;
 
 import taskmax.exception.TaskmaxException;
+
 import taskmax.storage.Storage;
 import taskmax.storage.TaskList;
+
 import taskmax.ui.Ui;
 
 /**
@@ -18,7 +20,7 @@ public class MarkCommand extends Command {
      */
     public MarkCommand(int index) {
         assert index >= 0 : "Index should not be negative";
-        this.index = index - 1; // Convert one-based index to zero-based index.
+        this.index = index - 1;
     }
 
     /**
