@@ -87,7 +87,7 @@ public class Storage {
     }
 
     /**
-     * Serializes a Task object into a formatted string for storage.
+     * Serialises a Task object into a formatted string for storage.
      *
      * @param task The task to serialize.
      * @return The serialized string representation of the task.
@@ -113,7 +113,7 @@ public class Storage {
     }
 
     /**
-     * Deserializes a line from the storage file into a Task object.
+     * Deserialises a line from the storage file into a Task object.
      *
      * @param line The stored task data in string format.
      * @return The corresponding Task object, or null if the format is invalid.

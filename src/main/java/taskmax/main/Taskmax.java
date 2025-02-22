@@ -14,7 +14,7 @@ import taskmax.storage.TaskList;
 import taskmax.ui.Ui;
 
 /**
- * The main class for Taskmax.
+ * Main class for Taskmax.
  * Handles user input, executes commands, and manages task storage.
  */
 public class Taskmax {
@@ -68,7 +68,7 @@ public class Taskmax {
     }
 
     /**
-     * The main entry point for Taskmax.
+     * TMain entry point for Taskmax.
      *
      * @param args Command-line arguments (not used).
      */

@@ -67,7 +67,7 @@ public class Parser {
     }
 
     /**
-     * Normalizes the input by trimming extra spaces and converting the command to lowercase.
+     * Normalises the input by trimming extra spaces and converting the command to lowercase.
      *
      * @param input The raw user input.
      * @return The normalized input string.

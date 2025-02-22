@@ -11,8 +11,15 @@ import java.io.IOException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+/**
+ * Test class for the {@link Storage} class.
+ */
 class StorageTest {
+    /**
+     * Tests saving and loading tasks to and from a file.
+     *
+     * @throws IOException If an error occurs during file operations.
+     */
     @Test
     void testSaveAndLoadTasks() throws IOException {
         String testFilePath = "data/test_tasks.txt";
